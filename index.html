@@ -4,9 +4,15 @@
         <meta charset="UTF-8">
         <title>Puzzle game</title>
         <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
         <script src="script.js" defer></script>
     </head>
     <body>
+
+        <div class="moves-counter" id="moves-counter">
+            Moves = <span id="moves-value">0</span>
+        </div>
         
         <div class="game" id="game">
             <div class="grid-container" id="grid">
@@ -28,5 +34,10 @@
                 <div class="grid__item" id="4_4">16</div>
             </div>
         </div>
+
+        <div class="button reset-button" id="reset-button">
+            <a href="#" class="reset-button-link">Reset Board</a>
+        </div>
+
     </body>
 </html>

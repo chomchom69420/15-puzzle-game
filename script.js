@@ -1,14 +1,32 @@
 nRows = 4;
 nCols =4;
 var rowBlank, colBlank;
-var moves;
-
+var moves=0;
+var movesVal = document.getElementById("moves-value");
+var resetButton = document.getElementById("reset-button");
 var gridArray =  [
     ['','','',''],
     ['','','',''],
     ['','','',''],
     ['','','','']
 ];
+//now will set up the array for storing the numbers
+var numberArray = [
+    [1,2,3,4],
+    [5,6,7,8],
+    [9,10,11,12],
+    [13,14,15,16]
+]
+
+// getting all the grid items in the gridArray
+for(i=0;i<4;i++) 
+{  
+    for(j=0;j<4;j++)
+    {
+        gridArray[i][j] = document.getElementById((i+1)+"_"+(j+1));
+    }
+}
+
 
 function updateBlank (r,c)
 {
@@ -16,10 +34,18 @@ function updateBlank (r,c)
     colBlank=c;
 }
 
+function updateMoves()
+{
+    movesVal.innerHTML = moves;
+}
+
 function incrementMoves()
 {
     moves++;
+    updateMoves();
 }
+
+
 
 function checkWin ()
 {
@@ -51,47 +77,6 @@ function checkWin ()
 
 }
 
-function startGame() 
-{
-    moves=0;
-    // getting all the grid items in the gridArray
-    for(i=0;i<4;i++) 
-    {  
-        for(j=0;j<4;j++)
-        {
-            gridArray[i][j] = document.getElementById((i+1)+"_"+(j+1));
-        }
-    }
-
-    //now will set up the array for storing the numbers
-
-    var numberArray = [
-        [1,2,3,4],
-        [5,6,7,8],
-        [9,10,11,12],
-        [13,14,15,16]
-    ]
-
-    //shuffling the array with fisher-yates modern shuffle 
-    for(i=3;i>=0;i--)
-    {   
-        for(j=3;j>=0;j--)
-        {
-            var n,m, temp;
-            //random number for the row
-            n= Math.floor(Math.random() *(i));
-            //random number for the column
-            m= Math.floor(Math.random() * (j));
-
-            temp = numberArray[i][j];
-            numberArray[i][j]=numberArray[n][m];
-            numberArray[n][m]=temp;
-
-        }
-    }
-}
-
-
 
 function showGrid()
 {
@@ -108,11 +93,41 @@ function showGrid()
                 updateBlank(i,j);
                 continue;
             }
+            if(gridArray[i][j].classList.contains("blank__item"))
+            {
+                gridArray[i][j].classList.remove("blank__item")
+            }
             gridArray[i][j].innerHTML = numberArray[i][j];
         }
     }
 
 }
+
+function startGame() 
+{
+    moves=0;
+    updateMoves();
+    //shuffling the array with fisher-yates modern shuffle 
+    for(i=3;i>=0;i--)
+    {   
+        for(j=3;j>=0;j--)
+        {
+            var n,m, temp;
+            //random number for the row
+            n= Math.floor(Math.random() *(i));
+            //random number for the column
+            m= Math.floor(Math.random() * (j));
+
+            temp = numberArray[i][j];
+            numberArray[i][j]=numberArray[n][m];
+            numberArray[n][m]=temp;
+        }
+    }
+    showGrid();
+}
+
+
+
 
 //starting game and showing grid for the first time
 // getting all the grid items in the gridArray
@@ -166,7 +181,7 @@ for(i=0;i<4;i++)
         }
         console.log("YES!");
         // gridArray[i][j].className = gridArray[i][j].className.replace(/\bblank__item\b/g, "");
-        gridArray[i][j].classList.add('coloured__item');
+        gridArray[i][j].classList.remove('blank__item')
         gridArray[i][j].innerHTML = numberArray[i][j];
     }
 }
@@ -275,5 +290,7 @@ gridArray[3][3].onclick = function ()
 }
 
 
-
+resetButton.onclick = function() { 
+    startGame();
+}
 

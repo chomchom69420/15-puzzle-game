@@ -11,14 +11,13 @@ html{
 
 
 .game {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0 auto;
     background-image: url("img/back.jpg");
     height: 70rem;
     width: 70rem;
 }
+
+
 
 .grid-container {
 
@@ -39,12 +38,13 @@ html{
 .grid__item {
     padding: 4rem 0;
     text-align: center;
-    
+    border-style: solid;
     border-color: white;
-    border-width: 1.5rem;
+    border-width: .01rem;
     line-height: 2rem;
     font-size: 2rem;
     font-weight: bolder;
+    background-color: rgba(0,0,255,0.50);
 
 }
 
@@ -59,6 +59,29 @@ html{
     background-color: white;
 }
 
-.coloured__item {
-    background-color: rgba(0,0,255,0.5);
+.moves-counter {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+.button {
+    display: block;
+    width: 20rem;
+    background-color: orangered;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    margin: 1rem auto;
+    box-shadow: 0 .5rem 2rem rgba(0, 0, 0, 0.15);
+    transition: all .1s ease;
+}
+
+.button:hover{
+    transform: scale(1.05);
+}
+
+.reset-button-link:visited, .reset-button-link:link {
+    text-decoration: none;
+    color: white;
 }
