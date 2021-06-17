@@ -219,9 +219,7 @@ function checkIfMovable (rowCoordinate, colCoordinate)
 
         checkWin();
     }
-    else {
-        alert("This tile cannot be moved");
-    }
+    
 }
 
 gridArray[0][0].onclick = function ()
